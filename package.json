@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "localforage": "^1.5.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
