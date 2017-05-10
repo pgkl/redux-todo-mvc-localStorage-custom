@@ -4,7 +4,9 @@ import TodoTextInput from './TodoTextInput'
 
 export default class Header extends Component {
   static propTypes = {
-    addTodo: PropTypes.func.isRequired
+    text: PropTypes.string.isRequired,
+    addTodo: PropTypes.func.isRequired,
+    textChange: PropTypes.func.isRequired
   }
 
   handleSave = text => {
@@ -19,6 +21,8 @@ export default class Header extends Component {
         <h1>todos</h1>
         <TodoTextInput newTodo
                        onSave={this.handleSave}
+                       text={this.props.text}
+                       onChange={text => this.props.textChange(text)}
                        placeholder="What needs to be done?" />
       </header>
     )

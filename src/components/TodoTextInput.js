@@ -5,7 +5,9 @@ import classnames from 'classnames'
 export default class TodoTextInput extends Component {
   static propTypes = {
     onSave: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     text: PropTypes.string,
+    value: PropTypes.string,
     placeholder: PropTypes.string,
     editing: PropTypes.bool,
     newTodo: PropTypes.bool
@@ -26,7 +28,7 @@ export default class TodoTextInput extends Component {
   }
 
   handleChange = e => {
-    this.setState({ text: e.target.value })
+    this.props.onChange(e.target.value);
   }
 
   handleBlur = e => {
@@ -45,7 +47,7 @@ export default class TodoTextInput extends Component {
         type="text"
         placeholder={this.props.placeholder}
         autoFocus="true"
-        value={this.state.text}
+        value={this.props.text}
         onBlur={this.handleBlur}
         onChange={this.handleChange}
         onKeyDown={this.handleSubmit} />
