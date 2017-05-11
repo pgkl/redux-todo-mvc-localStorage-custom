@@ -1,4 +1,4 @@
-# Redux TodoMVC Example with redux-persists
+# Redux TodoMVC Example: custom local storage implementation
 
 This project is a copy of [Redux TODOMVC Exampe](https://github.com/reactjs/redux/tree/master/examples/todomvc) with [redux-persist](https://github.com/rt2zz/redux-persist) added for persistence of state to localStorage and for loading state when page is revisited.
 
