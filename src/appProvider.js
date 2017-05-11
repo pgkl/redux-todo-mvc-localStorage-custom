@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { autoRehydrate, persistStore,  } from 'redux-persist';
+import { autoRehydrate, persistStore } from 'redux-persist';
 import logger from 'redux-logger';
-import localForage from 'localforage';
+//import localForage from 'localforage';
 
 import reducer from './reducers';
 import App from './containers/App';
@@ -23,7 +23,7 @@ export default class AppProvider extends Component {
     }
 
     componentWillMount() {
-        persistStore(store, {storage: localForage, blacklist:['todoText']}, () => {
+        persistStore(store, { blacklist:['todoText']}, () => {
             this.setState({ rehydrated: true });
         });
     }
