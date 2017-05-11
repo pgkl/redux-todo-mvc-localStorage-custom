@@ -13,21 +13,30 @@ const store = createStore(reducer, persistedStore, applyMiddleware(
     logger
 ));
 
-store.subscribe(()=>{
-    let s = Object.assign({},store.getState());
+//imagine this detects for browsers that aren't chrome too
+const ifQuotaLimitError = (e) => {
+    if (e.code && e.code === 22) {
+        return true;
+    }
+    else {
+        return false
+    }
+}
+
+store.subscribe(() => {
+    let s = Object.assign({}, store.getState());
     let filterList = ['todoText'];
     (async () => {
-        try{
+        try {
             filterList.forEach(filter => {
                 delete s[filter];
             });
             localStorage.setItem('appState', JSON.stringify(s));
         }
-        catch(err){
-            console.log({
-                message: 'There was an error setting local storage',
-                err
-            });
+        catch (err) {
+            ifQuotaLimitError(err)
+                ? console.log('Quota limit detected and intercepted. You should tell the user and/or do some other stuff. You should also think about why you\'ve hit the quota limit')
+                : console.log(err);
         }
     })();
 })
